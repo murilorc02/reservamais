@@ -1,0 +1,12 @@
+export class Usuario {
+    id: number;
+    login: string;
+    senha: string;
+    nome: string;
+    cpf: number;
+    funcao: string;
+    regmatricula: number;
+    nascimento: Date;
+    telefone: string;
+    email: string;
+}
