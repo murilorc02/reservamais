@@ -1,15 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { HorariosService } from './horarios.service';
-import { CreateHorarioDto } from './dto/create-horario.dto';
-import { UpdateHorarioDto } from './dto/update-horario.dto';
+import { Horario } from './entities/horario.entity';
 
 @Controller('horarios')
 export class HorariosController {
   constructor(private readonly horariosService: HorariosService) {}
 
   @Post()
-  create(@Body() createHorarioDto: CreateHorarioDto) {
-    return this.horariosService.create(createHorarioDto);
+  create(@Body() createHorario: Horario) {
+    return this.horariosService.createHorario(createHorario);
   }
 
   @Get()
@@ -23,12 +22,12 @@ export class HorariosController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateHorarioDto: UpdateHorarioDto) {
-    return this.horariosService.update(+id, updateHorarioDto);
+  update(@Param('id') id: string, @Body() updateHorario: Horario) {
+    return this.horariosService.updateHorario(+id, updateHorario);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.horariosService.remove(+id);
+    return this.horariosService.removeHorario(+id);
   }
 }

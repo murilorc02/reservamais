@@ -1,66 +1,34 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUsuarioDto } from './dto/create-usuario.dto';
-import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+import { Injectable } from '@nestjs/common';
 import { Usuario } from './entities/usuario.entity';
-import { NotFoundError } from 'rxjs';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsuarioService {
-
-  private readonly usuarios : Usuario[] = [];
-  private id:number = 1;
-
-  create(createUsuarioDto: CreateUsuarioDto) {
-    const newUsuario = {
-      id: this.id,
-      login: createUsuarioDto.login,
-      senha: createUsuarioDto.senha,
-      nome: createUsuarioDto.nome,
-      cpf: createUsuarioDto.cpf,
-      funcao: createUsuarioDto.funcao,
-      regmatricula: createUsuarioDto.regmatricula,
-      nascimento: createUsuarioDto.nascimento,
-      telefone: createUsuarioDto.telefone,
-      email: createUsuarioDto.email
-    };
-    this.id++;
-    this.usuarios.push(newUsuario);
-    return newUsuario;
+  
+  constructor(
+    @InjectRepository(Usuario)
+    private usuarioRepository: Repository<Usuario>,
+  ) {}
+  
+  create(usuario: Usuario): Promise<Usuario> {
+    return this.usuarioRepository.save(usuario);
   }
 
-  findAll() {
-    return this.usuarios;
+  findAll(): Promise<Usuario[]> {
+    return this.usuarioRepository.find();
   }
 
-  findOne(id: number) {
-    const usuario = this.usuarios.find(usuario => usuario.id == id);
-    
-    if(!usuario) {
-      throw new NotFoundException("Usuário não encontrado");
-    }
-
-    return usuario;
+  findOne(id: number): Promise<Usuario> {
+    return this.usuarioRepository.findOneBy({ id });
   }
 
-  update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    const usuario = this.findOne(id);
-    usuario.login = updateUsuarioDto.login;
-    usuario.senha = updateUsuarioDto.senha;
-    usuario.email = updateUsuarioDto.email;
-    usuario.telefone = updateUsuarioDto.telefone;
-    usuario.nome = updateUsuarioDto.nome;
-    usuario.nascimento = updateUsuarioDto.nascimento;
-    
-    return usuario;
+  async update(id: number, usuario: Usuario): Promise<void> {
+    await this.usuarioRepository.update(id, usuario);
   }
 
-  remove(id: number) {
-    const usuario = this.findOne(id);
-
-    const usuarioIndex = this.usuarios.findIndex((usuario) => usuario.id == id);
-
-    this.usuarios.splice(usuarioIndex, 1);
-
-    return this.usuarios;
+  async remove(id: number): Promise<void> {
+    await this.usuarioRepository.delete(id);
   }
+
 }

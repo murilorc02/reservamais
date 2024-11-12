@@ -1,15 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { SalasService } from './salas.service';
-import { CreateSalaDto } from './dto/create-sala.dto';
-import { UpdateSalaDto } from './dto/update-sala.dto';
+import { Sala } from './entities/sala.entity';
 
 @Controller('salas')
 export class SalasController {
   constructor(private readonly salasService: SalasService) {}
 
   @Post()
-  create(@Body() createSalaDto: CreateSalaDto) {
-    return this.salasService.create(createSalaDto);
+  create(@Body() createSala: Sala) {
+    return this.salasService.createSala(createSala);
   }
 
   @Get()
@@ -23,12 +22,12 @@ export class SalasController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSalaDto: UpdateSalaDto) {
-    return this.salasService.update(+id, updateSalaDto);
+  update(@Param('id') id: string, @Body() updateSala: Sala) {
+    return this.salasService.updateSala(+id, updateSala);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.salasService.remove(+id);
+    return this.salasService.removeSala(+id);
   }
 }

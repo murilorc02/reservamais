@@ -1,45 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { CreateBlocoDto } from './dto/create-bloco.dto';
-import { UpdateBlocoDto } from './dto/update-bloco.dto';
 import { Bloco } from './entities/bloco.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class BlocosService {
 
-  private readonly blocos : Bloco[] = [];
-  private id = 1;
-
-  create(createBlocoDto: CreateBlocoDto) {
-    const newBloco = {
-      id: this.id,
-      nome: createBlocoDto.nome
-    }
-    this.id++;
-    this.blocos.push(newBloco);
-    return newBloco;
+  constructor(
+    @InjectRepository(Bloco)
+    private blocoRepository: Repository<Bloco>,
+  ) {}
+  
+  createBloco(bloco: Bloco): Promise<Bloco> {
+    return this.blocoRepository.save(bloco);
   }
 
-  findAll() {
-    return this.blocos;
+  findAll(): Promise<Bloco[]> {
+    return this.blocoRepository.find();
   }
 
-  findOne(id: number) {
-    const bloco = this.blocos.find(blocos => blocos.id == id);
-    return bloco;
+  findOne(id: number): Promise<Bloco> {
+    return this.blocoRepository.findOneBy({ id });
   }
 
-  update(id: number, updateBlocoDto: UpdateBlocoDto) {
-    const bloco = this.findOne(id);
-    bloco.nome = updateBlocoDto.nome;
-    
-    return bloco;
+  async updateBloco(id: number, bloco: Bloco): Promise<void> {
+    await this.blocoRepository.update(id, bloco);
   }
 
-  remove(id: number) {
-    const bloco = this.findOne(id);
-    const blocoIndex = this.blocos.findIndex((bloco) => bloco.id == id);
-    this.blocos.splice(blocoIndex, 1);
-
-    return this.blocos;
+  async removeBloco(id: number): Promise<void> {
+    await this.blocoRepository.delete(id);
   }
+  
 }

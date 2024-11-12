@@ -1,45 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { CreateInstituicaoDto } from './dto/create-instituicao.dto';
-import { UpdateInstituicaoDto } from './dto/update-instituicao.dto';
 import { Instituicao } from './entities/instituicao.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class InstituicoesService {
 
-  private readonly instituicoes : Instituicao [] = [];
-  private id = 1;
-
-  create(createInstituicoeDto: CreateInstituicaoDto) {
-    const newInstituicao = {
-      id: this.id,
-      nome: createInstituicoeDto.nome
-    }
-    this.id++;
-    this.instituicoes.push(newInstituicao);
-
-    return newInstituicao;
+  constructor(
+    @InjectRepository(Instituicao)
+    private instituicaoRepository: Repository<Instituicao>,
+  ) {}
+  
+  createInstituicao(instituicao: Instituicao): Promise<Instituicao> {
+    return this.instituicaoRepository.save(instituicao);
   }
 
-  findAll() {
-    return this.instituicoes;
+  findAll(): Promise<Instituicao[]> {
+    return this.instituicaoRepository.find();
   }
 
-  findOne(id: number) {
-    const instituicao = this.instituicoes.find(instituicao => instituicao.id == id);
-    return instituicao;
+  findOne(id: number): Promise<Instituicao> {
+    return this.instituicaoRepository.findOneBy({ id });
   }
 
-  update(id: number, updateInstituicaoDto: UpdateInstituicaoDto) {
-    const instituicao = this.findOne(id);
-    instituicao.nome = updateInstituicaoDto.nome;
-    return instituicao;
+  async updateInstituicao(id: number, instituicao: Instituicao): Promise<void> {
+    await this.instituicaoRepository.update(id, instituicao);
   }
 
-  remove(id: number) {
-    const instituicao = this.findOne(id);
-    const instituicaoIndex = this.instituicoes.findIndex((instituicao) => instituicao.id == id);
-    this.instituicoes.splice(instituicaoIndex, 1);
-
-    return this.findAll;
+  async removeInstituicao(id: number): Promise<void> {
+    await this.instituicaoRepository.delete(id);
   }
+  
 }

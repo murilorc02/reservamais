@@ -1,15 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { InstituicoesService } from './instituicoes.service';
-import { CreateInstituicaoDto } from './dto/create-instituicao.dto';
-import { UpdateInstituicaoDto } from './dto/update-instituicao.dto';
+import { Instituicao } from './entities/instituicao.entity';
 
 @Controller('instituicoes')
 export class InstituicoesController {
   constructor(private readonly instituicoesService: InstituicoesService) {}
 
   @Post()
-  create(@Body() createInstituicoeDto: CreateInstituicaoDto) {
-    return this.instituicoesService.create(createInstituicoeDto);
+  create(@Body() createInstituicao: Instituicao) {
+    return this.instituicoesService.createInstituicao(createInstituicao);
   }
 
   @Get()
@@ -23,12 +22,12 @@ export class InstituicoesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateInstituicoeDto: UpdateInstituicaoDto) {
-    return this.instituicoesService.update(+id, updateInstituicoeDto);
+  update(@Param('id') id: string, @Body() updateInstituicao: Instituicao) {
+    return this.instituicoesService.updateInstituicao(+id, updateInstituicao);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.instituicoesService.remove(+id);
+    return this.instituicoesService.removeInstituicao(+id);
   }
 }
