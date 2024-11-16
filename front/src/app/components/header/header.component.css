@@ -1,0 +1,26 @@
+html {
+    top: 0;
+}
+
+#header {
+
+}
+
+#header-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.header-element {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    border: none;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.header-element:hover {
+    background-color: rgb(243, 223, 197);
+    transition: all 0.3s ease-in-out;
+}

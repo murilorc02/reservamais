@@ -1,0 +1,14 @@
+#horarios-aluno-container {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    justify-content: center;
+}
+
+.option-horario {
+    display: flex;
+    align-items: center;
+}
+
+.option-horario > span {
+    margin-left: auto;
+}

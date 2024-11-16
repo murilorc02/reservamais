@@ -1,20 +1,26 @@
 <div id="horarios-aluno-container">
     <h2 id="titulo-universidade"> Universidade X </h2>
-    <div id="selecionar-bloco">
-        <button class="option-bloco"> Bloco 1 </button>
-        <button class="option-bloco"> Bloco 2 </button>
-        <button class="option-bloco"> Bloco 3 </button>
-    </div>
+    <select id="selecionar-bloco">
+        <option class="option-bloco"> Bloco 1 </option>
+        <option class="option-bloco"> Bloco 2 </option>
+        <option class="option-bloco"> Bloco 3 </option>
+    </select>
     <div id="selecionar-sala">
-        <div class="option-sala">
+        <h1>Sala</h1>
+        <button class="option-sala">
             <h2> 01 </h2>
             <small> 2 horários disponíveis </small>
-        </div>
+        </button>
     </div>
     <div id="selecionar-horario">
+        <h1>Horário</h1>
         <div class="option-horario">
-            <h1> 07:00 </h1>
-            <p>Indisponível</p>
+            <h2> 07:00</h2>
+            <span>
+                Disponível
+                <br>
+                <small>Reservar ></small>
+            </span>
         </div>
     </div>
 </div>
