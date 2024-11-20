@@ -1,15 +1,16 @@
 <div id="home">
-
     <div id="instituicoes">
         <div id="instituicoes-wrapper">
-            <div class="instituicao">
-                <p> Instituição teste </p>
+            <div class="instituicao" *ngFor="let instituicao of instituicoes">
+                <p> {{ instituicao.nome }} </p>
                 <button> > </button>
+                <button *ngIf="instituicao.id" (click)="removerInstituicao(instituicao.id)"> X </button>
             </div>
         </div>
     </div>
     
-    <button id="add-inst">
+    <input type="text" [(ngModel)]="novaInstituicaoNome" placeholder="Nome da instituição"/>
+    <button id="add-inst" (click)="adicionarInstituicao()">
         <p> + </p>
         <p> Adicionar instituição </p>
     </button>
