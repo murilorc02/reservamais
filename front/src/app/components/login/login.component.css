@@ -72,4 +72,11 @@
     color: #e74c3c;
     font-size: 12px;
   }
+
+  a {
+    cursor: pointer;
+    pointer-events: auto;
+    color: blue; /* Garante que o link fique visível */
+    text-decoration: underline;
+}
   

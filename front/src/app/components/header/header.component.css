@@ -21,6 +21,7 @@ html {
 }
 
 .header-element:hover {
+    cursor: pointer;
     background-color: rgb(243, 223, 197);
     transition: all 0.3s ease-in-out;
 }

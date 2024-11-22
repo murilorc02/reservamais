@@ -1,23 +1,25 @@
 <div class="login-container">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input id="username" formControlName="username" type="text" />
-        <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched">
-          <small>Username é obrigatório.</small>
-        </div>
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="login">Login</label>
+      <input id="login" formControlName="login" type="text" />
+      <div *ngIf="loginForm.controls['login'].invalid && loginForm.controls['login'].touched">
+        <small>Login é obrigatório.</small>
       </div>
-  
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password" />
-        <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
-          <small>Password é obrigatório.</small>
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input id="senha" formControlName="senha" type="password" />
+      <div *ngIf="loginForm.controls['senha'].invalid && loginForm.controls['senha'].touched">
+        <small>Senha é obrigatória.</small>
       </div>
-  
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
-    </form>
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+  <div class="register-link">
+    <p>Não possui uma conta? <a routerLink="/cadastro">Cadastre-se aqui</a></p>
   </div>
-  
+</div>

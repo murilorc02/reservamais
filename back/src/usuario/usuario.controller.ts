@@ -7,8 +7,9 @@ export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 
   @Post()
-  create(@Body() createUsuario : Usuario) : Promise<Usuario> {
-    return this.usuarioService.create(createUsuario);
+  async create(@Body() createUsuario: Usuario): Promise<{ message: string; usuario: Usuario }> {
+    const usuario = await this.usuarioService.create(createUsuario);
+    return { message: 'Usuário criado com sucesso', usuario };
   }
 
   @Get()

@@ -26,6 +26,7 @@ import { Reserva } from './reservas/entities/reserva.entity';
 // import { SalasService } from './salas/salas.service';
 // import { BlocosService } from './blocos/blocos.service';
 // import { ReservasService } from './reservas/reservas.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -39,7 +40,7 @@ import { Reserva } from './reservas/entities/reserva.entity';
       entities: [Instituicao, Usuario, Horario, Sala, Bloco, Reserva],
       synchronize: true,
     }),
-    InstituicoesModule, UsuarioModule, HorariosModule, SalasModule, BlocosModule, ReservasModule,
+    InstituicoesModule, UsuarioModule, HorariosModule, SalasModule, BlocosModule, ReservasModule, AuthModule,
   ],
   // controllers: [AppController, UsuarioController, HorariosController,InstituicoesController, SalasController, BlocosController, ReservasController],
   // providers: [AppService, UsuarioService, HorariosService, InstituicoesService, SalasService, BlocosService, ReservasService],

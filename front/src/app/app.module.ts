@@ -7,20 +7,22 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { HorariosAlunoComponent } from './components/horarios-aluno/horarios-aluno.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,  // AppComponent precisa estar aqui agora
+    AppComponent,
   ],
   imports: [
-    BrowserModule,    // Necessário para rodar a aplicação no navegador
-    HttpClientModule, // Módulo necessário para requisições HTTP
-    LoginComponent,   // Importa o LoginComponent
-    HeaderComponent,  // Importa o HeaderComponent
-    HomeComponent,    // Importa o HomeComponent
-    HorariosAlunoComponent,  // Importa o HorariosAlunoComponent
+    BrowserModule, 
+    HttpClientModule,
+    LoginComponent, 
+    HeaderComponent, 
+    HomeComponent,    
+    HorariosAlunoComponent,
+    AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent],  // Define o AppComponent como o principal
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

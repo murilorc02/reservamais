@@ -10,7 +10,7 @@ export class UsuarioService {
     @InjectRepository(Usuario)
     private usuarioRepository: Repository<Usuario>,
   ) {}
-  
+
   create(usuario: Usuario): Promise<Usuario> {
     return this.usuarioRepository.save(usuario);
   }
@@ -21,6 +21,10 @@ export class UsuarioService {
 
   findOne(id: number): Promise<Usuario> {
     return this.usuarioRepository.findOneBy({ id });
+  }
+
+  async findByUsername(login: string): Promise<Usuario | undefined> {
+    return this.usuarioRepository.findOneBy({ login });
   }
 
   async update(id: number, usuario: Usuario): Promise<void> {

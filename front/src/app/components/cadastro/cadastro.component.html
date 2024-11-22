@@ -1,0 +1,80 @@
+<div class="cadastro-container">
+    <h2>Cadastro</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input id="nome" formControlName="nome" type="text" />
+        <div *ngIf="registerForm.controls['nome'].invalid && registerForm.controls['nome'].touched">
+          <small>Nome é obrigatório.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input id="cpf" formControlName="cpf" type="text" />
+        <div *ngIf="registerForm.controls['cpf'].invalid && registerForm.controls['cpf'].touched">
+          <small>CPF deve ter 11 dígitos.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="funcao">Função</label>
+        <input id="funcao" formControlName="funcao" type="text" />
+        <div *ngIf="registerForm.controls['funcao'].invalid && registerForm.controls['funcao'].touched">
+          <small>Função é obrigatória.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="regmatricula">Registro de Matrícula</label>
+        <input id="regmatricula" formControlName="regmatricula" type="number" />
+        <div *ngIf="registerForm.controls['regmatricula'].invalid && registerForm.controls['regmatricula'].touched">
+          <small>Registro de Matrícula é obrigatório.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="nascimento">Data de Nascimento</label>
+        <input id="nascimento" formControlName="nascimento" type="date" />
+        <div *ngIf="registerForm.controls['nascimento'].invalid && registerForm.controls['nascimento'].touched">
+          <small>Data de Nascimento é obrigatória.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input id="telefone" formControlName="telefone" type="text" />
+        <div *ngIf="registerForm.controls['telefone'].invalid && registerForm.controls['telefone'].touched">
+          <small>Telefone deve ter entre 10 e 11 dígitos.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">
+          <small>Insira um e-mail válido.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="login">Login</label>
+        <input id="login" formControlName="login" type="text" />
+        <div *ngIf="registerForm.controls['login'].invalid && registerForm.controls['login'].touched">
+          <small>Login é obrigatório.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input id="senha" formControlName="senha" type="password" />
+        <div *ngIf="registerForm.controls['senha'].invalid && registerForm.controls['senha'].touched">
+          <small>Senha deve ter pelo menos 6 caracteres.</small>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="registerForm.invalid">Cadastrar</button>
+    </form>
+  </div>
+  
