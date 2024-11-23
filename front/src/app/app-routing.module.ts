@@ -2,7 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { HorariosAlunoComponent } from './components/horarios-aluno/horarios-aluno.component';
+import { ReservaAdmComponent } from './components/reserva-adm/reserva-adm.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ReservaComponent } from './components/reserva/reserva.component';
 import { AuthGuard } from './components/login/auth.guard';
@@ -12,9 +12,9 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]  }, 
   { path: 'login', component: LoginComponent },       
-  { path: 'adm-reserva', component: ReservaComponent},
+  { path: 'reserva-adm', component: ReservaAdmComponent},
   { path: 'perfil', component: PerfilComponent},
-  { path: 'reserva', component: HorariosAlunoComponent },
+  { path: 'reserva', component: ReservaComponent },
   { path: 'cadastro', component: CadastroComponent },
   { path: '**', redirectTo: 'login' },
 ];

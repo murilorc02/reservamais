@@ -25,6 +25,10 @@ export class InstituicoesService {
     return this.http.get<Instituicao[]>(this.apiUrl);
   }
 
+  updateInstituicao(instituicao: { id: number; nome: string }): Observable<Instituicao> {
+    return this.http.patch<Instituicao>(`${this.apiUrl}/${instituicao.id}`, instituicao);
+  }  
+
   removeInstituicao(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }

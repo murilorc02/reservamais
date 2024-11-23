@@ -3,6 +3,7 @@ import { InstituicoesService } from './instituicoes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomeComponent {
   novaInstituicaoNome = '';
   instituicoes: {id?: number, nome: string} [] = [];
 
-  constructor(private instituicoesService: InstituicoesService) {}
+  constructor(private instituicoesService: InstituicoesService, private router: Router) {}
 
   ngOnInit() {
     this.carregarInstituicoes();
@@ -66,6 +67,28 @@ export class HomeComponent {
         console.error('Erro ao remover instituição:', err);
       }
     });
+  }
+
+  atualizarInstituicao(instituicao: { id?: number; nome: string }) {
+    if (instituicao.id) { // Só chama o serviço se o ID existir
+      this.instituicoesService.updateInstituicao({ 
+        id: instituicao.id, 
+        nome: instituicao.nome 
+      }).subscribe({
+        next: () => {
+          console.log('Instituição atualizada com sucesso:', instituicao.nome);
+        },
+        error: (err) => {
+          console.error('Erro ao atualizar instituição:', err);
+        },
+      });
+    } else {
+      console.warn('Instituição sem ID não pode ser atualizada:', instituicao.nome);
+    }
+  }  
+
+  irParaReservaAdm() {
+    this.router.navigate(['/reserva-adm']); 
   }
 
 }
