@@ -19,9 +19,10 @@ export class HomeComponent {
   novaInstituicaoNome = '';
   instituicoes: {id?: number, nome: string} [] = [];
 
-  constructor(private instituicoesService: InstituicoesService, private router: Router) {}
+  constructor(private instituicoesService: InstituicoesService, private router: Router) {
+  }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.carregarInstituicoes();
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Bloco, Horario, ReservaAdmService, Sala } from './reserva-adm.service';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +15,7 @@ export class ReservaAdmComponent implements OnInit {
 
   constructor(
     private reservaAdmService: ReservaAdmService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   instituicaoId!: number;
