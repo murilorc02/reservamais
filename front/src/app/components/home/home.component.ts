@@ -87,8 +87,8 @@ export class HomeComponent {
     }
   }  
 
-  irParaReservaAdm() {
-    this.router.navigate(['/reserva-adm']); 
+  irParaReservaAdm(id: number) {
+    this.router.navigate([`/reserva-adm/${id}`]); 
   }
 
 }

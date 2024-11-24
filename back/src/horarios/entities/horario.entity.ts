@@ -1,20 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Sala } from 'src/salas/entities/sala.entity';
+import { Instituicao } from 'src/instituicoes/entities/instituicao.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class Horario {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  disponivel: boolean;
+  @Column({ type: 'time' })
+  hora: string;
 
-  @Column({ type: 'date' })
-  data: Date;
+  @ManyToOne(() => Instituicao, (instituicao) => instituicao.horarios, { onDelete: 'CASCADE' })
+  instituicao: Instituicao;
 
-  @Column({ type: 'timestamp' })
-  hora: Date;
-
-  @ManyToOne(() => Sala, sala => sala.horarios)
-  sala: Sala;
 }

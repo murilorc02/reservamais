@@ -1,34 +1,46 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Sala } from './entities/sala.entity';
-import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class SalasService {
-
   constructor(
     @InjectRepository(Sala)
-    private SalaRepository: Repository<Sala>,
+    private salaRepository: Repository<Sala>,
   ) {}
-  
-  createSala(sala: Sala): Promise<Sala> {
-    return this.SalaRepository.save(sala);
+
+  async createSala(instituicaoId: number, blocoId: number, sala: Sala): Promise<Sala> {
+    sala.bloco = { id: blocoId, instituicao: { id: instituicaoId } } as any; // Associa sala ao bloco e instituição
+    return this.salaRepository.save(sala);
   }
 
-  findAll(): Promise<Sala[]> {
-    return this.SalaRepository.find();
+  async findAll(instituicaoId: number, blocoId: number): Promise<Sala[]> {
+    return this.salaRepository.find({
+      where: { bloco: { id: blocoId, instituicao: { id: instituicaoId } } },
+      relations: ['bloco', 'bloco.instituicao'],
+    });
   }
 
-  findOne(id: number): Promise<Sala> {
-    return this.SalaRepository.findOneBy({ id });
+  async findOne(instituicaoId: number, blocoId: number, id: number): Promise<Sala> {
+    const sala = await this.salaRepository.findOne({
+      where: { id, bloco: { id: blocoId, instituicao: { id: instituicaoId } } },
+      relations: ['bloco', 'bloco.instituicao'],
+    });
+    if (!sala) {
+      throw new NotFoundException('Sala não encontrada.');
+    }
+    return sala;
   }
 
-  async updateSala(id: number, sala: Sala): Promise<void> {
-    await this.SalaRepository.update(id, sala);
+  async updateSala(instituicaoId: number, blocoId: number, id: number, sala: Sala): Promise<Sala> {
+    const existingSala = await this.findOne(instituicaoId, blocoId, id);
+    Object.assign(existingSala, sala);
+    return this.salaRepository.save(existingSala);
   }
 
-  async removeSala(id: number): Promise<void> {
-    await this.SalaRepository.delete(id);
+  async removeSala(instituicaoId: number, blocoId: number, id: number): Promise<void> {
+    const sala = await this.findOne(instituicaoId, blocoId, id);
+    await this.salaRepository.remove(sala);
   }
-
 }

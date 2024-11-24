@@ -2,32 +2,36 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { HorariosService } from './horarios.service';
 import { Horario } from './entities/horario.entity';
 
-@Controller('horarios')
+@Controller('instituicoes/:instituicaoId/horarios')
 export class HorariosController {
   constructor(private readonly horariosService: HorariosService) {}
 
   @Post()
-  create(@Body() createHorario: Horario) {
-    return this.horariosService.createHorario(createHorario);
+  create(@Param('instituicaoId') instituicaoId: number, @Body() createHorario: Horario) {
+    return this.horariosService.createHorario(instituicaoId, createHorario);
   }
 
   @Get()
-  findAll() {
-    return this.horariosService.findAll();
+  findAll(@Param('instituicaoId') instituicaoId: number) {
+    return this.horariosService.findAll(instituicaoId);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.horariosService.findOne(+id);
+  findOne(@Param('instituicaoId') instituicaoId: number, @Param('id') id: number) {
+    return this.horariosService.findOne(instituicaoId, id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateHorario: Horario) {
-    return this.horariosService.updateHorario(+id, updateHorario);
+  update(
+    @Param('instituicaoId') instituicaoId: number,
+    @Param('id') id: number,
+    @Body() updateHorario: Horario,
+  ) {
+    return this.horariosService.updateHorario(instituicaoId, id, updateHorario);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.horariosService.removeHorario(+id);
+  remove(@Param('instituicaoId') instituicaoId: number, @Param('id') id: number) {
+    return this.horariosService.removeHorario(instituicaoId, id);
   }
 }

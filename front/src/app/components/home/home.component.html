@@ -4,7 +4,7 @@
             <div class="instituicao" *ngFor="let instituicao of instituicoes">
                 <input type="text" [(ngModel)]="instituicao.nome" (blur)="atualizarInstituicao(instituicao)">
                 <div class="btn-group">
-                    <button (click)="irParaReservaAdm()"> > </button>
+                    <button *ngIf="instituicao.id" (click)="irParaReservaAdm(instituicao.id)"> > </button>
                     <button *ngIf="instituicao.id" (click)="removerInstituicao(instituicao.id)"> X </button>
                 </div>
             </div>

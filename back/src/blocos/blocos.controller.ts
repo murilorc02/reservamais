@@ -2,32 +2,36 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BlocosService } from './blocos.service';
 import { Bloco } from './entities/bloco.entity';
 
-@Controller('blocos')
+@Controller('/instituicoes/:instituicaoId/blocos')
 export class BlocosController {
   constructor(private readonly blocosService: BlocosService) {}
 
   @Post()
-  create(@Body() createBloco: Bloco) {
-    return this.blocosService.createBloco(createBloco);
+  create(@Param('instituicaoId') instituicaoId: string, @Body() createBloco: Bloco) {
+    return this.blocosService.createBloco(+instituicaoId, createBloco);
   }
 
   @Get()
-  findAll() {
-    return this.blocosService.findAll();
+  findAll(@Param('instituicaoId') instituicaoId: string) {
+    return this.blocosService.findAll(+instituicaoId);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.blocosService.findOne(+id);
+  findOne(@Param('instituicaoId') instituicaoId: string, @Param('id') id: string) {
+    return this.blocosService.findOne(+instituicaoId, +id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBloco: Bloco) {
-    return this.blocosService.updateBloco(+id, updateBloco);
+  update(
+    @Param('instituicaoId') instituicaoId: string,
+    @Param('id') id: string,
+    @Body() updateBloco: Bloco,
+  ) {
+    return this.blocosService.updateBloco(+instituicaoId, +id, updateBloco);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.blocosService.removeBloco(+id);
+  remove(@Param('instituicaoId') instituicaoId: string, @Param('id') id: string) {
+    return this.blocosService.removeBloco(+instituicaoId, +id);
   }
 }

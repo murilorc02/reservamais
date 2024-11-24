@@ -1,31 +1,33 @@
 <div id="reserva-adm-container">
-    <div id="selecionar-bloco">
-        <h2 id="titulo-universidade"> Universidade X </h2>
-        <select id="select-bloco">
-            <option class="option-bloco"> Bloco 1 </option>
-            <option class="option-bloco"> Bloco 2 </option>
-            <option class="option-bloco"> Bloco 3 </option>
-        </select>
-        <button class="add"> + </button>
+  <h2 id="titulo-universidade">{{ instituicaoNome }}</h2>
+  <div id="selecionar-bloco">
+    <button class="option-bloco" *ngFor="let bloco of blocos" (click)="carregarSalas(bloco.id)">
+      <h2>{{ bloco.nome }}</h2>
+      <button (click)="editarBloco(bloco)">Editar</button>
+      <button (click)="excluirBloco(bloco.id)">Excluir</button>
+      <!-- <small>{{ sala.disponiveis }} horários disponíveis</small> -->
+    </button>
+    <button class="add" (click)="adicionarBloco()">+</button>
+  </div>
+
+  <h1>Sala</h1>
+  <div id="selecionar-sala" *ngIf="blocoSelecionado">
+    <button class="option-sala" *ngFor="let sala of salas" (click)="carregarHorarios(sala.id)">
+      <h2>{{ sala.nome }}</h2>
+      <button (click)="editarSala(sala)">Editar</button>
+      <button (click)="excluirSala(sala.id)">Excluir</button>
+      <!-- <small>{{ sala.disponiveis }} horários disponíveis</small> -->
+    </button>
+    <button class="add" (click)="adicionarSala()">+</button>
+  </div>
+
+  <h1>Horário</h1>
+  <div id="selecionar-horario" *ngIf="salaSelecionada">
+    <div class="option-horario" *ngFor="let horario of horarios">
+      <h2>{{ horario.hora }}</h2>
+      <button (click)="editarHorario(horario)">Editar</button>
+      <button (click)="excluirHorario(horario.id)">Excluir</button>
     </div>
-    <div id="selecionar-sala">
-        <h1>Sala</h1>
-        <button class="option-sala">
-            <h2> 01 </h2>
-            <small> 2 horários disponíveis </small>
-        </button>
-        <button class="add"> + </button>
-    </div>
-    <div id="selecionar-horario">
-        <h1>Horário</h1>
-        <div class="option-horario">
-            <h2> 07:00</h2>
-            <span>
-                Disponível
-                <br>
-                <small>Reservar ></small>
-            </span>
-        </div>
-        <button class="add"> + </button>
-    </div>
+    <button class="add" (click)="adicionarHorario()">+</button>
+  </div>
 </div>

@@ -1,6 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { Bloco } from 'src/blocos/entities/bloco.entity';
-import { Horario } from 'src/horarios/entities/horario.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class Sala {
@@ -10,9 +9,7 @@ export class Sala {
   @Column()
   nome: string;
 
-  @ManyToOne(() => Bloco, bloco => bloco.id)
+  @ManyToOne(() => Bloco, (bloco) => bloco.salas, { onDelete: 'CASCADE' })
   bloco: Bloco;
 
-  @OneToMany(() => Horario, horario => horario.sala)
-  horarios: Horario[];
 }
