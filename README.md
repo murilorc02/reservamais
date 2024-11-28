@@ -44,8 +44,8 @@ Aqui você vai encontrar os requisitos e ações necessárias para testar a vers
 # Rotas para testes na plataforma de API
 
 - Usuários
-   -   GET, POST              localhost:3000/usuarios
-   -   GET ID, PATCH, DELETE  localhost:3000/usuarios/:id
+   -   GET, POST              localhost:3000/usuario
+   -   GET ID, PATCH, DELETE  localhost:3000/usuario/:id
 
 - Instituições
    -   GET, POST              localhost:3000/instituicoes
