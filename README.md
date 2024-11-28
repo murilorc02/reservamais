@@ -44,21 +44,21 @@ Aqui você vai encontrar os requisitos e ações necessárias para testar a vers
 # Rotas para testes na plataforma de API
 
 - Usuários
-   -   GET, POST              localhost:4200/usuarios
-   -   GET ID, PATCH, DELETE  localhost:4200/usuarios/:id
+   -   GET, POST              localhost:3000/usuarios
+   -   GET ID, PATCH, DELETE  localhost:3000/usuarios/:id
 
 - Instituições
-   -   GET, POST              localhost:4200/instituicoes
-   -   GET ID, PATCH, DELETE  localhost:4200/instituicoes/:id
+   -   GET, POST              localhost:3000/instituicoes
+   -   GET ID, PATCH, DELETE  localhost:3000/instituicoes/:id
 
 - Blocos
-   -   GET, POST              localhost:4200/instituicoes/:instituicaoId/blocos
-   -   GET ID, PATCH, DELETE  localhost:4200/instituicoes/:instituicaoId/blocos/:id
+   -   GET, POST              localhost:3000/instituicoes/:instituicaoId/blocos
+   -   GET ID, PATCH, DELETE  localhost:3000/instituicoes/:instituicaoId/blocos/:id
 
 - Salas
-   -   GET, POST              localhost:4200/instituicoes/:instituicaoId/blocos/:blocoId/salas
-   -   GET ID, PATCH, DELETE  localhost:4200/instituicoes/:instituicaoId/blocos/:blocoId/salas/:id
+   -   GET, POST              localhost:3000/instituicoes/:instituicaoId/blocos/:blocoId/salas
+   -   GET ID, PATCH, DELETE  localhost:3000/instituicoes/:instituicaoId/blocos/:blocoId/salas/:id
 
 - Horários
-   -   GET, POST              localhost:4200/instituicoes/:instituicaoId/horarios
-   -   GET ID, PATCH, DELETE  localhost:4200/instituicoes/:instituicaoId/horarios/:id
+   -   GET, POST              localhost:3000/instituicoes/:instituicaoId/horarios
+   -   GET ID, PATCH, DELETE  localhost:3000/instituicoes/:instituicaoId/horarios/:id
