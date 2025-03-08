@@ -21,7 +21,7 @@ Aqui você vai encontrar os requisitos e ações necessárias para testar a vers
 
 2. No projeto aberto no VSCode, abra o arquivo main.ts, localizado no caminho back/src/main.ts
 
-3. Preencha essas variáveis abaixo com os dados para conexão do seu banco de dados Postgre:
+3. Preencha as variáveis abaixo com os dados para conexão do seu banco de dados Postgre:
   ![image](https://github.com/user-attachments/assets/cade6136-1067-407b-adec-fa162b3bdb21)
 
 4. Usando o atalho Ctrl + ' crie dois terminais de cmd
